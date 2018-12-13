@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
-import fb from './firebase';
+import Game from './views/Game';
+import Stats from './views/Stats';
+import Contestants from './views/Contestants';
+import Tabs from './components/Tabs';
 
 class App extends Component {
 
@@ -8,36 +11,33 @@ class App extends Component {
         super();
 
         this.state = {
-            testValue: null,
-            v: '',
+            currentTab: 1,
         }
     }
 
-    componentDidMount() {
+    renderView() {
+        switch(this.state.currentTab) {
+            case 1: return <Game/>;
+            case 2: return <Contestants />;
+            case 3: return <Stats />;
 
-        // get data on boot
-        fb.dbRef.once('value').then(snapshot => {
-            this.setState({
-                testValue: snapshot.child('test').val()
-            });
-        });
-
-        // listen for changes
-        fb.dbRef.child('test').on('value', snapshot => {
-            this.setState({
-                testValue: snapshot.val() || null,
-            });
-        });
+            default: return <Game />;
+        }
     }
 
     render() {
-        const { testValue, v } = this.state;
+        const { currentTab } = this.state;
 
         return (
             <div className="App">
-                <h2>The value in DB is: {testValue}</h2>
-                <input value={v} onChange={e => this.setState({v: e.target.value})} />
-                <button onClick={() => fb.setTestValue(v)} >Set in DB</button>
+
+                <Tabs 
+                    onTabChange={tab => this.setState({ currentTab: tab })} 
+                    activeTab={currentTab} 
+                />
+
+                {this.renderView()}
+
             </div>
         );
     }
