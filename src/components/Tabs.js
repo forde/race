@@ -37,7 +37,11 @@ const TabList = styled.ul`
     display: flex;
     margin: 0;
     padding:0;
-    padding:20px;
+    padding:10px;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 100;
     li {
         margin: 0 20px 0 0;
         padding:0;

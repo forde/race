@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+import Track from '../components/Track';
+
 class Game extends Component {
     
     constructor(props) {
@@ -14,7 +16,7 @@ class Game extends Component {
     render() {
         return (
             <Wrapper>
-                <h1>Game</h1>
+                <Track contestants={[{a:1},{a:1},{a:1},{a:1},{a:1},{a:1}]}/>
             </Wrapper>
         );
     }
