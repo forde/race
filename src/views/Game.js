@@ -145,7 +145,7 @@ class Game extends Component {
                 {leaderboard.length !== 0 && 
                     <Leaderboard>
                         { leaderboard.map((item, index) => {
-                            return <div>#{ index + 1 } - { item.name }</div>
+                            return <div key={ index }>#{ index + 1 } - { item.name }</div>
                         })}
                     </Leaderboard>
                 }
