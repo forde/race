@@ -14,7 +14,7 @@ class Game extends Component {
         this.state = {
             running: false,
             finished: false,
-            winner: null,
+            leaderboard: [],
             contestants: [
                 {
                     id: 1,
@@ -62,7 +62,7 @@ class Game extends Component {
             let { contestants } = self.state;
 
             contestants.map(contestant => {
-                contestant.position = contestant.position + (1  * (contestant.speed / 100)) / 7;
+                contestant.position = contestant.position + (1  * (contestant.speed / 100));
             });
 
             self.setState({
@@ -91,13 +91,30 @@ class Game extends Component {
     checkWinConditions() {
         this.state.contestants.map(contestant => {
             if (contestant.position >= 100) {
+                let leaderboard = [...this.state.leaderboard];
+                let contestants = this.state.contestants;
+
+                let newContestants = contestants.filter(item => {
+                    return item.id !== contestant.id
+                });
+
+                leaderboard.push(contestant);
+
                 this.setState({
-                    ...this.state, ... {
-                        winner: contestant,
-                        finished: true,
-                        running: false
+                    ...this.state, ...{
+                        leaderboard: leaderboard,
+                        contestants: newContestants
                     }
-                })
+                });
+
+                if (this.state.contestants.length === 0) {
+                    this.setState({
+                        ...this.state, ...{
+                            running: false,
+                            finished: true
+                        }
+                    })
+                }
             }
         });
     }
@@ -113,7 +130,13 @@ class Game extends Component {
                     })}
                 </Map>
 
-                <Winner>Winner: { this.state.winner && this.state.winner.name }</Winner>
+                { this.state.leaderboard.length !== 0 && 
+                    <Leaderboard>
+                        { this.state.leaderboard.map((item, index) => {
+                            return <div>#{ index + 1 } - { item.name }</div>
+                        })}
+                    </Leaderboard>
+                }
             </Wrapper>
         );
     }
@@ -132,7 +155,7 @@ const Map = styled.div`
     width: 100%;
 `
 
-const Winner = styled.div`
+const Leaderboard = styled.div`
     position: relative;
     height: 100%;
     width: 100%;
