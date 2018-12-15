@@ -7,10 +7,10 @@ import Contestant from './../components/Contestant';
 const baseSpeed = 10;
 
 class Game extends Component {
-    
+
     constructor(props) {
         super(props);
-        
+
         this.state = {
             running: false,
             finished: false,
@@ -118,19 +118,19 @@ class Game extends Component {
             }
         });
     }
-  
+
     render() {
         return (
             <Wrapper>
                 <h1>Game</h1>
-                
+
                 <Map>
                     { this.state.contestants.map((contestant, index) => {
                         return <Contestant key={ index } contestant={ contestant } ></Contestant>
                     })}
                 </Map>
 
-                { this.state.leaderboard.length !== 0 && 
+                { this.state.leaderboard.length !== 0 &&
                     <Leaderboard>
                         { this.state.leaderboard.map((item, index) => {
                             return <div>#{ index + 1 } - { item.name }</div>

@@ -4,6 +4,7 @@ import Game from './views/Game';
 import Stats from './views/Stats';
 import Contestants from './views/Contestants';
 import Tabs from './components/Tabs';
+import MapSelect from './views/MapSelect';
 
 class App extends Component {
 
@@ -20,6 +21,7 @@ class App extends Component {
             case 1: return <Game/>;
             case 2: return <Contestants />;
             case 3: return <Stats />;
+            case 4: return <MapSelect />;
 
             default: return <Game />;
         }
@@ -31,9 +33,9 @@ class App extends Component {
         return (
             <div className="App">
 
-                <Tabs 
-                    onTabChange={tab => this.setState({ currentTab: tab })} 
-                    activeTab={currentTab} 
+                <Tabs
+                    onTabChange={tab => this.setState({ currentTab: tab })}
+                    activeTab={currentTab}
                 />
 
                 {this.renderView()}
