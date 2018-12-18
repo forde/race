@@ -13,7 +13,7 @@ class Stats extends Component {
   
     render() {
         return (
-            <Wrapper>3rwerwerw
+            <Wrapper>
                 <h1>Stats</h1>
             </Wrapper>
         );

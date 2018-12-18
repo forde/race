@@ -13,6 +13,7 @@ class Contestant extends Component {
                     }
                 }
             >
+            {this.props.children}
             </Wrapper>
         );
     }
@@ -21,10 +22,13 @@ class Contestant extends Component {
 export default Contestant;
 
 const Wrapper = styled.div`
-    position:relative;
-    height: 20px;
-    width: 20px;
-    background: blue;
-    margin-bottom: 5px;
-    transition: left 0.1s linear
+    position: relative; 
+    > div {
+        width: 63px;
+        height: 99px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin-bottom: 10px;
+        z-index: 1;
+    }
 `

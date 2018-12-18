@@ -11,7 +11,7 @@ class App extends Component {
         super();
 
         this.state = {
-            currentTab: 1,
+            currentTab: 2,
         }
     }
 
@@ -20,7 +20,6 @@ class App extends Component {
             case 1: return <Game/>;
             case 2: return <Contestants />;
             case 3: return <Stats />;
-
             default: return <Game />;
         }
     }

@@ -31,7 +31,7 @@ const Ground = styled.div`
     position: relative;
 
     animation-name: track;
-    animation-duration: 3s;
+    animation-duration: 10s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     @keyframes track {
@@ -49,7 +49,7 @@ const SideTrack = styled.div`
     left:0;
     background: url(${sideTrackBgd}) ${props => props.top ? 'top' : 'bottom'} left repeat-x;
     border-bottom: 4px solid #fff;
-    ${props => props.bottom ? `border-top: 4px solid #fff;` : ``}
+    ${props => props.bottom ? `border-bottom: none; border-top: 4px solid #fff;` : ``}
 `
 
 const Tracks = styled.div`
@@ -62,6 +62,7 @@ const Tracks = styled.div`
 const Track = styled.div`
     height: ${props => props.height}%;
     background: url(${stripesBgd}) bottom left repeat-x;
+    opacity: .5;
     &:last-child {
         background: transparent;
     }

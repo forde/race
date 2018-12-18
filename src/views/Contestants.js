@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import fb from './../firebase';
+import Player from '../components/Player';
 
 class Contestants extends Component {
     
@@ -10,7 +11,6 @@ class Contestants extends Component {
         
         this.state = {
             contestants: [],
-            v: '',
         }
     }
 
@@ -35,17 +35,18 @@ class Contestants extends Component {
 
         });
     }
+
+    onInputChange(e, key) {
+
+    }
   
     render() {
-        const { v } = this.state;
         
         return (
             <Wrapper>
-                <h1>Contestants</h1>
-
-                <input value={v} onChange={e => this.setState({v: e.target.value})} />
-                <button onClick={this.addContestant} >Add contestant</button>
-
+                <PlayerEditor>
+                    <input value="" placeholder="name" onChange={e => this.onInputChange(e, 'name')} />
+                </PlayerEditor>
             </Wrapper>
         );
     }
@@ -55,4 +56,12 @@ export default Contestants;
 
 const Wrapper = styled.div`
     position:relative;
+    display: flex;
+    padding:100px 20px 20px 20px;
+`
+
+const PlayerEditor = styled.div`
+    border: 1px solid #ccc;
+    padding: 20px;
+    width:100%;
 `
